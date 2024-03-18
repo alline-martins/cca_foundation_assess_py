@@ -1,28 +1,19 @@
-from src.order import Item, Order
-from src.product import Product
+from src.order import Order
 from src.countries import Country
 from src.address import Address
-
-from test.product_builder import (
-    guitar_fender,
-    guitar_gibson,
-    accoustic_guitar,
-    eletric_amp,
-    bass,
-    blue_drum
+from test.items_builder import (
+    first_item,
+    second_item,
+    third_item,
+    fourth_item,
+    fifth_item,
+    sixth_item,
+    seveth_item
 )
 from test.warehouse_build import build_warehouse
 
 import pytest
 
-
-first_item = Item(guitar_gibson, 2)
-second_item = Item(guitar_fender, 1)
-third_item = Item(eletric_amp, 3)
-fourth_item = Item(accoustic_guitar, 1)
-fifth_item = Item(eletric_amp, 1)
-sixth_item = Item(bass, 1)
-seveth_item = Item(blue_drum, 1)
 
 tijs_address = Address("50", "Vrijdagmarkt", "Gent", "9000", Country.BELGIUM)
 igor_address = Address("11", "Oblast", "Dnipro", "49000", Country.UKRAINE)
