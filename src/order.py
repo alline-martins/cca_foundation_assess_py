@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Dict, List
 
 from src.address import Address
 from src.product import Product
@@ -14,7 +15,10 @@ class Item:
 class Order:
     def __init__(self, address: Address) -> None:
         self.address = Address
-        self.order_items: list[Item] = []
+        self.order_items: Dict[str, Item] = {}
 
-    def add_item(self, items: Item) -> None:
-        self.order_items.append(items)
+    def add_item(self, item: Item) -> None:
+        if item.product.description not in self.order_items.keys():
+            self.order_items[item.product.description] = item
+        else:
+            print("Update quantity here")
