@@ -17,5 +17,5 @@ class Warehouse:
         if entry.product.description not in self.catalogue.keys():
             self.catalogue[entry.product.description] = entry
         else:
-            print("Entry already exists")
-
+            #or update the product with entry stock value
+            self.catalogue[entry.product.description].stock += entry.stock
