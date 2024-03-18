@@ -15,4 +15,6 @@ class Order:
     def __init__(self, address: Address) -> None:
         self.address = Address
         self.order_items: list[Item] = []
-    
+
+    def add_item(self, items: list[Item]) -> None:
+        self.order_items.append(items)
