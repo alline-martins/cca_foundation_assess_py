@@ -12,5 +12,7 @@ class Item:
 
 @dataclass
 class Order:
-    shipping_address: Address
-    items: list[Item]
+    def __init__(self, address: Address) -> None:
+        self.address = Address
+        self.order_items: list[Item] = []
+    
