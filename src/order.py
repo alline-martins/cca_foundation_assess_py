@@ -17,6 +17,7 @@ class Order:
     def __init__(self, address: Address) -> None:
         self.address = Address
         self.order_items: Dict[str, Item] = {}
+        self.checkout_order: list() = []
 
     def add_item(self, item: Item) -> None:
         if item.product.description not in self.order_items.keys():
@@ -31,5 +32,12 @@ class Order:
                     print("Product quantity not available in stock")
                 else:
                     warehouse.catalogue[product_name].stock -= order_item.quantity
+                    self.checkout_order.append(order_item)
             else:
                 print("Error product not found")
+    
+    def get_final_product_price(self) -> float:
+        final_product_price = 0
+        for item in self.checkout_order:
+            final_product_price += (item.quantity) * (item.product.price)
+        return final_product_price
