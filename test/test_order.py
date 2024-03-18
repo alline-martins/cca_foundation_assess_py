@@ -22,3 +22,10 @@ def test_order_is_initialised_empty():
     order = Order(address=igor_address)
     assert order.order_items == {}
 
+def test_if_updates_final_quantity():
+    order = Order(address=lorenzo_address)
+    order.add_item(first_item)
+    order.add_item(second_item)
+    order.add_item(first_item)
+    assert order.order_items[first_item.product.description].quantity == 4
+

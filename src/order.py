@@ -21,4 +21,5 @@ class Order:
         if item.product.description not in self.order_items.keys():
             self.order_items[item.product.description] = item
         else:
-            print("Update quantity here")
+            self.order_items[item.product.description].quantity += item.quantity
+
