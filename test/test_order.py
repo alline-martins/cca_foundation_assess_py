@@ -71,5 +71,5 @@ def test_shipping_fee():
     order6.check_stock(warehouse=warehouse)
     shipping_fee = order6.get_shipping_fee()
     total = order6.get_total()
-    assert shipping_fee == 4.99
-    assert total == 154.99
+    assert shipping_fee == 9.99
+    assert total == 159.99

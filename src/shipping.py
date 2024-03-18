@@ -12,14 +12,14 @@ def calculate_shipping(country, order_total):
     shipping = 0.0
 
     if region == "UK":
-        if order_total < 100.0:
+        if order_total < 120.0:
             shipping = 4.99
 
     if region == "EU":
-        if order_total < 100:
-            shipping = 8.99
+        if order_total < 200:
+            shipping = 9.99
         else:
-            shipping = 4.99
+            shipping = 5.99
 
     if region == "OTHER":
         shipping = 9.99
