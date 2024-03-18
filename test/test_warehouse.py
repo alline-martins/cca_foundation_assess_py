@@ -1,10 +1,12 @@
 from src.warehouse import Entry, Warehouse
 from src.product import Product
+from test.product_builder import (
+    guitar_fender,
+    guitar_gibson,
+    accoustic_guitar,
+    eletric_amp
+)
 
-guitar_gibson = Product(1, "Gibson Les Paul", 229)
-guitar_fender = Product(2, "Fender Stratocaster", 450)
-accoustic_guitar = Product(3, "Accoustic Guitar", 100)
-eletric_amp = Product(4, "Eletric Amp", 50)
 
 first_entry = Entry(guitar_gibson, 40)
 second_entry = Entry(guitar_fender, 20)
