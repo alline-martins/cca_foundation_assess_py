@@ -29,7 +29,7 @@ class Order:
         for product_name, order_item in self.order_items.items():
             if product_name in warehouse.catalogue.keys():
                 if order_item.quantity > warehouse.catalogue[product_name].stock:
-                    print("Product quantity not available in stock")
+                    raise Exception("Product quantity not available in stock")
                 else:
                     warehouse.catalogue[product_name].stock -= order_item.quantity
                     self.checkout_order.append(order_item)

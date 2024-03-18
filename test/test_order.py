@@ -13,6 +13,7 @@ guitar_fender = Product(2, "Fender Stratocaster", 450)
 accoustic_guitar = Product(3, "Accoustic Guitar", 100)
 eletric_amp = Product(4, "Eletric Amp", 50)
 bass = Product(5, "Pink Bass", 180)
+blue_drum = Product(6, "Blue Drum", 800)
 
 first_item = Item(guitar_gibson, 2)
 second_item = Item(guitar_fender, 1)
@@ -20,6 +21,7 @@ third_item = Item(eletric_amp, 3)
 fourth_item = Item(accoustic_guitar, 1)
 fifth_item = Item(eletric_amp, 1)
 sixth_item = Item(bass, 1)
+seveth_item = Item(blue_drum, 1)
 
 tijs_address = Address("50", "Vrijdagmarkt", "Gent", "9000", Country.BELGIUM)
 igor_address = Address("11", "Oblast", "Dnipro", "49000", Country.UKRAINE)
@@ -60,3 +62,12 @@ def test_when_item_is_not_in_stock():
         order4.check_stock(warehouse=warehouse)
     error_message = str(e.value)
     assert error_message == "Product not found in stock"
+
+def test_when_quantity_is_higher_than_available_in_stock():
+    warehouse = build_warehouse()
+    order5 = Order(address=lorenzo_address)
+    order5.add_item(seveth_item)
+    with pytest.raises(Exception) as e:
+        order5.check_stock(warehouse=warehouse)
+    error_message = str(e.value)
+    assert error_message == "Product quantity not available in stock"
