@@ -1,8 +1,16 @@
 from src.product import Product
 
-def test_product_description():
-    eletric_guitar = Product(1, "Gibson Les Paul", 229)
-    assert eletric_guitar.description == "Gibson Les Paul"
+import pytest
+
+@pytest.mark.parametrize("id, description, price, expected_value", [
+    (1, "Gibson Les Paul", 229, "Gibson Les Paul"),
+    (2, "Fender Stratocaster", 450, "Fender Stratocaster"),
+    (3, "Accoustic Guitar", 100, "Accoustic Guitar"),
+    (4, "Eletric Amp", 50, "Eletric Amp")
+])
+def test_product_description(id, description, price, expected_value):
+    product = Product(id=id, description=description, price=price)
+    assert product.description == expected_value
 
 def test_product_price():
     bass = Product(2, "bass", 150)
