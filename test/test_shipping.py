@@ -10,6 +10,6 @@ import pytest
     (Country.UKRAINE.value, 100, 9.99),
     (Country.UKRAINE.value, 50, 9.99)
 ])
-def test_when_uk_region_order_higher_than_hundred(country, order_total, expected_value):
+def test_shipping_calculater(country, order_total, expected_value):
     shipping = calculate_shipping(country=country, order_total=order_total)
     assert shipping == expected_value
