@@ -8,7 +8,7 @@ class Entry:
     stock: int
 
 
-# @dataclass
-# class Warehouse:
-#     catalogue: list[Entry]
+class Warehouse:
+    def __init__(self) -> None:
+        self.catalogue: list[Entry] = []
 
