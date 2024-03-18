@@ -8,7 +8,7 @@ class Entry:
     stock: int
 
 
-@dataclass
-class Warehouse:
-    catalogue: list[Entry]
+# @dataclass
+# class Warehouse:
+#     catalogue: list[Entry]
 
