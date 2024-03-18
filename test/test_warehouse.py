@@ -1,4 +1,4 @@
-from src.warehouse import Entry
+from src.warehouse import Entry, Warehouse
 from src.product import Product
 
 guitar_gibson = Product(1, "Gibson Les Paul", 229)
@@ -8,9 +8,13 @@ eletric_amp = Product(4, "Eletric Amp", 50)
 
 first_entry = Entry(guitar_gibson, 40)
 second_entry = Entry(guitar_fender, 20)
-
+third_entry = Entry(accoustic_guitar, 15)
 def test_if_entry_returns_product_description():
     assert first_entry.product.description == "Gibson Les Paul"
 
 def test_if_entry_returns_stock():
     assert second_entry.stock == 20
+
+def test_if_catalogue_is_initialised_empty():
+    warehouse = Warehouse()
+    assert len(warehouse.catalogue) == 0
