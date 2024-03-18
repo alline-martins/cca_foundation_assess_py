@@ -17,3 +17,8 @@ third_item = Item(eletric_amp, 3)
 tijs_address = Address("50", "Vrijdagmarkt", "Gent", "9000", Country.BELGIUM)
 igor_address = Address("11", "Oblast", "Dnipro", "49000", Country.UKRAINE)
 lorenzo_address = Address("234", "Viale Emilio Alemagna", "Milan", "201221", Country.ITALY)
+
+def test_order():
+    order1 = Order(address=tijs_address)
+    order1.add_item(first_item)
+    assert order1.order_items[0].product.description == "Gibson Les Paul"
