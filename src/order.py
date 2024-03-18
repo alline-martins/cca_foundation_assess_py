@@ -34,7 +34,7 @@ class Order:
                     warehouse.catalogue[product_name].stock -= order_item.quantity
                     self.checkout_order.append(order_item)
             else:
-                print("Error product not found")
+                raise Exception("Product not found in stock")
     
     def get_final_product_price(self) -> float:
         final_product_price = 0

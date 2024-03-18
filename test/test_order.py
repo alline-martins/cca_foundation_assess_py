@@ -6,17 +6,20 @@ from src.address import Address
 
 from test.warehouse_build import build_warehouse
 
+import pytest
 
 guitar_gibson = Product(1, "Gibson Les Paul", 229)
 guitar_fender = Product(2, "Fender Stratocaster", 450)
 accoustic_guitar = Product(3, "Accoustic Guitar", 100)
 eletric_amp = Product(4, "Eletric Amp", 50)
+bass = Product(5, "Pink Bass", 180)
 
 first_item = Item(guitar_gibson, 2)
 second_item = Item(guitar_fender, 1)
 third_item = Item(eletric_amp, 3)
 fourth_item = Item(accoustic_guitar, 1)
 fifth_item = Item(eletric_amp, 1)
+sixth_item = Item(bass, 1)
 
 tijs_address = Address("50", "Vrijdagmarkt", "Gent", "9000", Country.BELGIUM)
 igor_address = Address("11", "Oblast", "Dnipro", "49000", Country.UKRAINE)
@@ -48,3 +51,12 @@ def test_final_price_without_shipping():
     order3.check_stock(warehouse=warehouse)
     product_price = order3.get_final_product_price()
     assert product_price == 150
+
+def test_when_item_is_not_in_stock():
+    warehouse = build_warehouse()
+    order4 = Order(address=tijs_address)
+    order4.add_item(sixth_item)
+    with pytest.raises(Exception) as e:
+        order4.check_stock(warehouse=warehouse)
+    error_message = str(e.value)
+    assert error_message == "Product not found in stock"
