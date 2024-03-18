@@ -10,12 +10,12 @@ class Entry:
 
 class Warehouse:
     def __init__(self) -> None:
-        self.catalogue: list[Entry] = []
+        self.catalogue: dict[str, Entry] = {}
     
     def add_entry(self, entry: Entry) -> None:
         #check if already exist
-        if entry not in self.catalogue:
-            self.catalogue.append(entry)
+        if entry.product.description not in self.catalogue.keys():
+            self.catalogue[entry.product.description] = entry
         else:
             print("Entry already exists")
 
