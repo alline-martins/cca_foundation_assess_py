@@ -20,10 +20,11 @@ def test_if_catalogue_is_initialised_empty():
     warehouse = Warehouse()
     assert len(warehouse.catalogue) == 0
 
-def test_if_catalogue_has_unique_entry():
+def test_if_catalogue_has_unique_entry_and_updates_stock_when_multiple_entry():
     warehouse = Warehouse()
     warehouse.add_entry(first_entry)
     warehouse.add_entry(second_entry)
     warehouse.add_entry(third_entry)
     warehouse.add_entry(third_entry)
     assert len(warehouse.catalogue) == 3
+    assert warehouse.catalogue[third_entry.product.description].stock == 30
