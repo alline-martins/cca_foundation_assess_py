@@ -46,3 +46,7 @@ class Order:
         order_total = self.get_final_product_price()
         return calculate_shipping(country=country, order_total=order_total)
 
+    def get_total(self) -> float:
+        return (
+            self.get_shipping_fee() + self.get_final_product_price()
+        )
