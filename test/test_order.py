@@ -4,6 +4,8 @@ from src.countries import Country
 from src.warehouse import Warehouse
 from src.address import Address
 
+from test.warehouse_build import build_warehouse
+
 
 guitar_gibson = Product(1, "Gibson Les Paul", 229)
 guitar_fender = Product(2, "Fender Stratocaster", 450)
@@ -29,3 +31,10 @@ def test_if_updates_final_quantity():
     order.add_item(first_item)
     assert order.order_items[first_item.product.description].quantity == 4
 
+def test_update_warehouse_stock():
+    warehouse = build_warehouse()
+    order = Order(address=tijs_address)
+    order.add_item(third_item)
+    order.check_stock(warehouse=warehouse)
+    assert warehouse.catalogue[third_item.product.description].stock == 67 #70 eletric amps in stock - 3 items in order
+    
