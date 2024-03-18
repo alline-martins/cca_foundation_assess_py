@@ -15,6 +15,8 @@ eletric_amp = Product(4, "Eletric Amp", 50)
 first_item = Item(guitar_gibson, 2)
 second_item = Item(guitar_fender, 1)
 third_item = Item(eletric_amp, 3)
+fourth_item = Item(accoustic_guitar, 1)
+fifth_item = Item(eletric_amp, 1)
 
 tijs_address = Address("50", "Vrijdagmarkt", "Gent", "9000", Country.BELGIUM)
 igor_address = Address("11", "Oblast", "Dnipro", "49000", Country.UKRAINE)
@@ -37,4 +39,12 @@ def test_update_warehouse_stock():
     order.add_item(third_item)
     order.check_stock(warehouse=warehouse)
     assert warehouse.catalogue[third_item.product.description].stock == 67 #70 eletric amps in stock - 3 items in order
-    
+
+def test_final_price_without_shipping():
+    warehouse = build_warehouse()
+    order3 = Order(address=igor_address)
+    order3.add_item(fourth_item)
+    order3.add_item(fifth_item)
+    order3.check_stock(warehouse=warehouse)
+    product_price = order3.get_final_product_price()
+    assert product_price == 150
