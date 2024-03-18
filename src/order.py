@@ -13,7 +13,6 @@ class Item:
     quantity: int
 
 
-@dataclass
 class Order:
     def __init__(self, address: Address) -> None:
         self.address: Address = address
