@@ -71,3 +71,11 @@ def test_when_quantity_is_higher_than_available_in_stock():
         order5.check_stock(warehouse=warehouse)
     error_message = str(e.value)
     assert error_message == "Product quantity not available in stock"
+
+def test_shipping_fee():
+    warehouse = build_warehouse()
+    order6 = Order(address=tijs_address)
+    order6.add_item(third_item)
+    order6.check_stock(warehouse=warehouse)
+    shipping_fee = order6.get_shipping_fee()
+    assert shipping_fee == 4.99

@@ -3,6 +3,7 @@ from typing import Dict, List
 
 from src.address import Address
 from src.product import Product
+from src.shipping import calculate_shipping
 from src.warehouse import Warehouse
 
 
@@ -15,7 +16,7 @@ class Item:
 @dataclass
 class Order:
     def __init__(self, address: Address) -> None:
-        self.address = Address
+        self.address: Address = address
         self.order_items: Dict[str, Item] = {}
         self.checkout_order: list() = []
 
@@ -41,3 +42,9 @@ class Order:
         for item in self.checkout_order:
             final_product_price += (item.quantity) * (item.product.price)
         return final_product_price
+    
+    def get_shipping_fee(self) -> float:
+        country = self.address.country.value
+        order_total = self.get_final_product_price()
+        shipping_fee = calculate_shipping(country=country, order_total=order_total)
+        return shipping_fee
